@@ -1,0 +1,43 @@
+EROR_IN_QUESTION = "I don't understand you"
+
+#класс для всех объектов: имя, координаты, комната/инвентарь,
+#короткое описание, длинное 
+#статус: неизвестен, известен
+class Object():
+    def __init__(self, name, x, y, environment, short_description, long_description, status):        
+        self.name = name
+        self.environment = environment
+        self.x = x
+        self.y = y        
+        self.short_description = short_description
+        self.long_description = long_description
+        self.status = status
+        
+    def __str__(obj):
+        return obj.name
+    
+    def short_description(obj):
+        return obj.short_description
+    
+#персонаж/комната: местонахождение и инвентарь
+class Container():
+    def __init__(self, inventary, environment, description):
+        self.inventary = inventary
+        self.environment = environment
+        self.description = description
+        
+    def description_container(container):
+        description = []
+        for obj in container(inventary):
+            description.append(obj.supplementary_description)
+        return container.description, description
+        
+        
+class Actions():
+    
+    def explore_obj(obj):
+        if obj.status == known and obj.environment == character.environment:
+            obj.status = good_known
+            return obj.long_description
+        else:
+            return EROR_IN_QUESTION
